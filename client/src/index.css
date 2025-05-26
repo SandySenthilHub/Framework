@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme - Metronic */
+  --background: 0 0% 100%;
+  --foreground: 220 13% 13%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 13% 13%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 13% 13%;
+  --primary: 219 100% 62%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 220 13% 13%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 13% 45%;
+  --accent: 220 14% 96%;
+  --accent-foreground: 220 13% 13%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 219 100% 62%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark theme - Metronic */
+  --background: 224 13% 10%;
+  --foreground: 0 0% 95%;
+  --card: 224 13% 12%;
+  --card-foreground: 0 0% 95%;
+  --popover: 224 13% 10%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 219 100% 62%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 224 13% 15%;
+  --secondary-foreground: 0 0% 95%;
+  --muted: 224 13% 15%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 224 13% 15%;
+  --accent-foreground: 0 0% 95%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 224 13% 18%;
+  --input: 224 13% 18%;
+  --ring: 219 100% 62%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Metronic Sidebar Styles */
+.metronic-sidebar {
+  @apply bg-card border-r border-border;
+}
+
+.metronic-sidebar-item {
+  @apply flex items-center px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-all;
+}
+
+.metronic-sidebar-item-active {
+  @apply bg-primary text-primary-foreground;
+}
+
+/* Custom scrollbar for dark theme */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* Fix Recharts tooltip black screen issue */
+.recharts-tooltip-wrapper {
+  z-index: 9999 !important;
+  pointer-events: none !important;
+}
+
+.recharts-default-tooltip {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: calc(var(--radius) - 2px) !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  color: hsl(var(--foreground)) !important;
+  pointer-events: none !important;
+}
+
+.recharts-tooltip-item {
+  color: hsl(var(--foreground)) !important;
+}
+
+.recharts-tooltip-label {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Prevent cursor overlay issues */
+.recharts-cartesian-grid-cursor,
+.recharts-cursor {
+  display: none !important;
+}
+
+/* Ensure responsive container doesn't create overlay */
+.recharts-responsive-container {
+  position: relative !important;
+  z-index: 1 !important;
+}
